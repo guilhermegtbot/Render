@@ -3,7 +3,7 @@ services:
     name: meraki-status-app  # Escolha um nome para sua aplicação
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    startCommand: gunicorn app:app --bind 0.0.0.0:8000
     envVars:
       - key: MERAKI_API_KEY
         value: YOUR_MERAKI_API_KEY  # Substitua pela sua chave real
