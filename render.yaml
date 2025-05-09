@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: meraki-status-app  # Escolha um nome para sua aplicação
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: MERAKI_API_KEY
+        value: YOUR_MERAKI_API_KEY  # Substitua pela sua chave real
+      - key: MERAKI_ORGANIZATION_ID  # Opcional
+        value: YOUR_MERAKI_ORGANIZATION_ID # Substitua pelo seu ID real (se necessário)
+    wsgi:
+      application: app:app
+      port: 8000

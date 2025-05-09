@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Status do Dispositivo Meraki</title>
+</head>
+<body>
+    <h1>Verificar Status do Dispositivo Meraki</h1>
+    <form method="POST">
+        <label for="device_id">ID do Dispositivo:</label>
+        <input type="text" id="device_id" name="device_id" required><br><br>
+        <input type="submit" value="Verificar">
+    </form>
+
+    {% if error %}
+    <p style="color: red;">Erro: {{ error }}</p>
+    {% endif %}
+
+    {% if device_info %}
+    <h2>Status do Dispositivo: {{ device_id }}</h2>
+    {% if device_info.error %}
+        <p style="color: red;">{{ device_info.error }}</p>
+    {% else %}
+        <p><b>Online:</b> {{ device_info.status }}</p>
+        {% if device_info.ip %}
+            <p><b>IP:</b> {{ device_info.ip }}</p>
+        {% endif %}
+        {% endif %}
+    {% endif %}
+</body>
+</html>
